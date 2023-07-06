@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form(action="/", method="POST")
+    div
+      label(for="username") Username:
+      input(type="text", name="username", id="username")
+
+    div
+      label(for="password") Password:
+      input(type="password", name="password", id="password")
+
+    div
+      button(type="submit", name="action", value="login") Login
+      button(type="submit", name="action", value="register") Register
