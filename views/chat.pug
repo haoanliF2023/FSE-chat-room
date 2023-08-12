@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    h1= title
+    ul(id="messages")
+    form(id="form", action="")
+        input(id="input", autocomplete="off")
+        button() Post
+        
+    script(src="/socket.io/socket.io.js")
+    script(src="javascripts/chat.js")

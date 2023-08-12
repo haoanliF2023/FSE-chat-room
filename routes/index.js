@@ -23,7 +23,7 @@ passport.use(
       console.log(username);
       console.log(password);
       if (!username || !password) {
-        done(new Error('Missing credentials1'), null);
+        done(new Error('Missing credentials'), null);
       }
       // find user in db
       db.get('SELECT * FROM users WHERE username = ?', [ username ], function(err, row) {

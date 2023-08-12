@@ -50,4 +50,17 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+io.on('connection', function(socket) {
+  console.log('a user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
+
+io.on('connection', (socket) => {
+  socket.on('chat message', (msg) => {
+    console.log('message: ' + msg);
+  });
+});
+
 module.exports = app;

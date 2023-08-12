@@ -20,7 +20,7 @@ db.serialize(function() {
     time TIME \
   )");
 
-  // create an initial user (username: alice, password: letmein)
+  // create an initial user
   var salt = crypto.randomBytes(16);
   db.run('INSERT OR IGNORE INTO users (username, hashed_password, salt) VALUES (?, ?, ?)', [
     'lori',
