@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const passport = require('passport');
 const io = require('socket.io')();
+const db = require('./db');
 
 var indexRouter = require('./routes/index');
 var chatRouter = require('./routes/chat');
@@ -50,16 +51,26 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-io.on('connection', function(socket) {
-  console.log('a user connected');
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-});
-
 io.on('connection', (socket) => {
+  console.log('a user connected');
+  // pull up the chat record
+  db.all("SELECT * FROM messages", [], (err, rows) => {
+    if (err) {
+      throw err;
+    } 
+    rows.forEach(row => {
+      socket.emit('chat message', row.message);
+    })
+  })
+  
   socket.on('chat message', (msg) => {
-    console.log('message: ' + msg);
+    // store msg to db
+    db.run('INSERT INTO messages (user_id, message, time) VALUES (?, ?, ?)', [
+      0, // TODO: use real user id
+      msg,
+      new Date().toLocaleTimeString()
+    ]);
+    io.emit('chat message', msg);
   });
 });
 
