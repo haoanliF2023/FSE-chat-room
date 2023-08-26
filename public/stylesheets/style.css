@@ -3,6 +3,41 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+h1 {
+  text-align: center;
+}
+
 a {
   color: #00B7FF;
+}
+
+.login-form {
+  position: relative;
+  max-width: 300px;
+  margin: 0 auto 100px;
+  padding: 15px;
+}
+
+.login-form input {
+  width: 100%;
+  margin: 0 0 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.login-form button {
+  width: 48%;
+  font-weight: bold;
+  background-color: #5ea1ffc3;
+  border-radius: 3px;
+  padding: 2px 15px;
+}
+
+.login-form button:hover,
+.login-form button:focus {
+  background-color: #6cabf9;
+}
+
+.login-form button + button {
+  margin-left: 4%;
 }
