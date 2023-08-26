@@ -59,15 +59,16 @@ io.on('connection', (socket) => {
       throw err;
     } 
     rows.forEach(row => {
-      socket.emit('chat message', row.message);
+      socket.emit('chat message', row);
     })
   })
   
   socket.on('chat message', (msg) => {
     // store msg to db
+    console.log(msg);
     db.run('INSERT INTO messages (user_id, message, time) VALUES (?, ?, ?)', [
-      0, // TODO: use real user id
-      msg,
+      msg.user.id, // TODO: use real user id
+      msg.message,
       new Date().toLocaleTimeString()
     ]);
     io.emit('chat message', msg);

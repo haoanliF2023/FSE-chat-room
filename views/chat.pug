@@ -8,4 +8,6 @@ block content
         button() Post
         
     script(src="/socket.io/socket.io.js")
+    script.
+        var user = !{JSON.stringify(user)};
     script(src="javascripts/chat.js")
