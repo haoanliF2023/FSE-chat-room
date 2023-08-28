@@ -4,7 +4,8 @@ block content
     div(class="chat-page")
         div(class="bar")
             h3 FSE Chat Room
-            button(style="margin-left:auto;") Logout
+            form(action="/logout", method="post", style="margin-left:auto;") 
+                button Logout
         div(id="messages")
             div(class="message")
                 h4 Lori 
