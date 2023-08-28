@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -15,7 +14,7 @@ a {
   position: relative;
   max-width: 300px;
   margin: 0 auto 100px;
-  padding: 15px;
+  padding: 50px 15px;
 }
 
 .login-form input {
@@ -40,4 +39,67 @@ a {
 
 .login-form button + button {
   margin-left: 4%;
+}
+
+.chat-page {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.chat-page input {
+  margin: 10px 0;
+  box-sizing: border-box;
+  height: 100px;
+  width: 100%;
+}
+
+.chat-page button {
+  font-weight: bold;
+  background-color: #ff7d32c3;
+  border-radius: 3px;
+  padding: 2px 15px;
+}
+
+.chat-page button:hover,
+.chat-page button:focus {
+  background-color: #ff7d32;
+}
+
+.bar {
+  display: flex;
+  background-color: #6cabf9;
+  padding: 3px;
+  margin: 10px 0;
+}
+
+.bar h3 {
+  display: inline;
+  margin: auto 0;
+}
+
+.message {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: rgb(230, 230, 230);
+}
+
+.message h4 {
+  display: inline-block;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.message .time {
+  float: right;
+  font-size: 0.85em;
+}
+
+.message p {
+  display: block;
+  border-width: 0;
+  margin: 0;
 }
