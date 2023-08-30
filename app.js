@@ -54,22 +54,28 @@ app.use(function(err, req, res, next) {
 io.on('connection', (socket) => {
   console.log('a user connected');
   // pull up the chat record
-  db.all("SELECT * FROM messages", [], (err, rows) => {
-    if (err) {
-      throw err;
-    } 
-    rows.forEach(row => {
-      socket.emit('chat message', row);
-    })
-  })
+  db.all(`
+    SELECT m.message, m.time, u.username
+    FROM messages m
+    INNER JOIN users u ON m.user_id = u.id
+    ORDER BY datetime(m.time) DESC
+    `, [], (err, rows) => {
+      if (err) {
+        throw err;
+      } 
+      rows.forEach(row => {
+        socket.emit('chat message', row);
+      })
+    }
+  )
   
   socket.on('chat message', (msg) => {
     // store msg to db
     console.log(msg);
     db.run('INSERT INTO messages (user_id, message, time) VALUES (?, ?, ?)', [
-      msg.user.id, // TODO: use real user id
+      msg.user_id,
       msg.message,
-      new Date().toLocaleTimeString()
+      msg.time,
     ]);
     io.emit('chat message', msg);
   });

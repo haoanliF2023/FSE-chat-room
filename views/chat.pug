@@ -7,16 +7,12 @@ block content
             form(action="/logout", method="post", style="margin-left:auto;") 
                 button Logout
         div(id="messages")
-            div(class="message")
-                h4 Lori 
-                p(class="time") 00.00.0000 00:00AM
-                p message
         form(id="chat-form", action="")
             input(id="input")
             div(class="bar")
                 button(style="margin: auto") Post
 
-        script(src="/socket.io/socket.io.js")
-        script.
-            var user = !{JSON.stringify(user)};
-        script(src="javascripts/chat.js")
+    script(src="/socket.io/socket.io.js")
+    script.
+        var user = !{JSON.stringify(user)};
+    script(src="javascripts/chat.js")
